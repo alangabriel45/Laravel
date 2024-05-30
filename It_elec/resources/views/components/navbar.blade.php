@@ -23,6 +23,12 @@
                         <a href="#" class="nav-link">Profile</a>
                     </li>
                     <li class="nav-item d-md-none">
+                        <a href="#" class="nav-link">Order History</a>
+                    </li>
+                    <li class="nav-item d-md-none">
+                        <a href="/viewcart" class="nav-link">Your Cart</a>
+                    </li>
+                    <li class="nav-item d-md-none">
                         @if(!(in_array('1', $userRoles) && in_array('2', $userRoles)))
                             <a href="/startselling" class="nav-link">Start Selling</a>
                         @else
@@ -42,13 +48,35 @@
                             <img src="{{ URL('images/OIP.jpg') }}" alt="Profile Picture" class="rounded-circle" style="width: 32px; height: 32px;">
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-                            <li><a class="dropdown-item" href="/profile">Profile</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" href="/profile">Profile</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/profile">Order History</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/viewcart">Your Cart</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             @if((in_array('1', $userRoles) && in_array('2', $userRoles)))
-                                <li><a class="dropdown-item" href="/myShop">My Shop</a></li>
-                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" href="/myShop">My Shop</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
                             @else
-                            <li><a class="dropdown-item" href="/startselling">Start Selling</a></li>
+                            <li>
+                                <a class="dropdown-item" href="/startselling">Start Selling</a>
+                            </li>
                             <li><hr class="dropdown-divider"></li>
                             @endif
                             <li>

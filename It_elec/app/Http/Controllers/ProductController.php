@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\MultiRole;
 use App\Models\Product;
 use App\Models\Shop;
@@ -204,6 +205,19 @@ class ProductController extends Controller
         $product->save();
 
         // Redirect or return a response
+        return redirect('/');
+    }
+    public function addtocart(Request $request, $id)
+    {
+        
+        $quantity = $request->input('quantity');
+
+        Cart::create([
+            'userId' => Auth::id(),
+            'productId' => $id,
+            'quantity' => $quantity,
+        ]);
+
         return redirect('/');
     }
 }
