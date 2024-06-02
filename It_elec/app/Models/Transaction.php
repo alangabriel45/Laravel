@@ -14,6 +14,10 @@ class Transaction extends Model
      *
      * @var array<int, string>
      */
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'productId');
+    }
     protected $fillable = [
         'userId',
         'productId',

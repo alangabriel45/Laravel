@@ -23,7 +23,7 @@
                         <a href="#" class="nav-link">Profile</a>
                     </li>
                     <li class="nav-item d-md-none">
-                        <a href="#" class="nav-link">Order History</a>
+                        <a href="/transactionhistory" class="nav-link">Order History</a>
                     </li>
                     <li class="nav-item d-md-none">
                         <a href="/viewcart" class="nav-link">Your Cart</a>
@@ -55,7 +55,7 @@
                                 <hr class="dropdown-divider">
                             </li>
                             <li>
-                                <a class="dropdown-item" href="/profile">Order History</a>
+                                <a class="dropdown-item" href="/transactionhistory">Order History</a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">

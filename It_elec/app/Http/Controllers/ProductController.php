@@ -177,36 +177,42 @@ class ProductController extends Controller
 
     public function transaction(Request $request, $id)
     {
-        // Validate the request
         $request->validate([
-            'payment' => 'required|numeric|min:0', // Assuming payment should be numeric and non-negative
+            'payment' => 'required|numeric|min:0',
+            'quantity' => 'required|integer|min:1'
         ]);
-
-        // Retrieve the payment amount from the request
+    
         $payment = $request->input('payment');
-
-        // Retrieve the quantity from the modal
         $quantity = $request->input('quantity');
-
-        // Get the product by its ID
+    
         $product = Product::findOrFail($id);
-
-        // Perform necessary actions with the transaction and product data
-        // For example, creating a new transaction record and updating product quantity
+    
+        // Create the transaction
         Transaction::create([
             'userId' => Auth::id(),
             'productId' => $id,
-            'quantity' => $quantity, // Use the quantity from the modal
+            'quantity' => $quantity,
             'payment' => $payment,
         ]);
-
+    
         // Update the product quantity
         $product->quantity -= $quantity;
         $product->save();
-
-        // Redirect or return a response
-        return redirect('/');
+    
+        $userId = Auth::id();
+    
+        // Check if the product exists in the cart
+        $cartItem = Cart::where('userId', $userId)->where('productId', $id)->first();
+    
+        if ($cartItem) {
+            // Remove the item from the cart
+            $cartItem->delete();
+        }
+    
+        return redirect()->route('viewcart')->with('success', 'Transaction completed successfully');
     }
+    
+
     public function addtocart(Request $request, $id)
     {
         
@@ -218,6 +224,6 @@ class ProductController extends Controller
             'quantity' => $quantity,
         ]);
 
-        return redirect('/');
+        return redirect()->route('viewcart')->with('success', 'Transaction completed successfully');
     }
 }

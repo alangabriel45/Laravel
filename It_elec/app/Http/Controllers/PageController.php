@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Shop;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,6 +50,13 @@ class PageController extends Controller
         $cartItems = Cart::where('userId', $userId)->with('product')->get();
 
         return view('viewcart', compact('cartItems'));
+    }
+    public function transactionHistory()
+    {
+        $userId = Auth::id();
+        $transactions = Transaction::where('userId', $userId)->get();
+
+        return view('transactionhistory', compact('transactions'));
     }
     public function updateCartItemQuantity(Request $request, $id)
     {

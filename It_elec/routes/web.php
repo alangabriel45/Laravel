@@ -28,7 +28,8 @@ Route::get('/productdetails/{id}', [ProductController::class,'productdetails'])-
 Route::post('/transaction/{id}', [ProductController::class,'transaction'])->middleware('auth');
 Route::get('/viewshop/{id}', [PageController::class,'viewshop'])->middleware('auth');
 Route::post('/addtocart/{id}', [ProductController::class,'addtocart'])->middleware('auth');
-Route::get('/viewcart', [PageController::class, 'viewcart'])->middleware('auth');
+Route::get('/viewcart', [PageController::class, 'viewcart'])->name('viewcart')->middleware('auth');
 Route::post('/updatecartitem/{id}', [PageController::class, 'updateCartItemQuantity'])->middleware('auth');
 Route::delete('/removecartitem/{id}', [PageController::class, 'removeCartItem'])->middleware('auth');
 Route::get('/checkout', [PageController::class, 'index'])->middleware('auth');
+Route::get('/transactionhistory', [PageController::class, 'transactionHistory'])->name('transactionhistory')->middleware('auth');

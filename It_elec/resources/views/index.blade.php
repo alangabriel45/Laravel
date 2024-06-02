@@ -4,7 +4,7 @@
 
 <div class="container my-3">
     <hr>
-    <h3>T-Shirts</h3>
+    <h3>Bag</h3>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
         @foreach($products as $product)
         @if($product->categoryId == 1)
@@ -54,7 +54,7 @@
 </div>
 <div class="container my-3">
     <hr>
-    <h3>Bag</h3>
+    <h3>T-Shirt</h3>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
         @foreach($products as $product)
         @if($product->categoryId == 3)

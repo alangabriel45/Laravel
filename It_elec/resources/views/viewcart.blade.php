@@ -41,6 +41,7 @@
                                 @method('DELETE')
                                 <button class="btn btn-danger">Remove</button>
                             </form>
+                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#buyNowModal" data-product-id="{{ $item->product->id }}" data-product-quantity="{{ $item->quantity }}" data-product-price="{{ $item->product->price }}">Buy Now</button>
                         </td>
                     </tr>
                 @endforeach
@@ -51,6 +52,35 @@
     <div id="emptyCartMessage" @if(!$cartItems->isEmpty()) style="display: none;" @endif>
         <div class="alert alert-info">
             Your cart is empty.
+        </div>
+    </div>
+</div>
+
+<!-- Buy Now Modal -->
+<div class="modal fade" id="buyNowModal" tabindex="-1" aria-labelledby="buyNowModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="buyNowModalLabel">Buy Now</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="buyNowForm" method="post" action="/transaction">
+                @csrf
+                <div class="modal-body">
+                    <input type="hidden" name="product_id" id="product_id">
+                    <input type="hidden" name="quantity" id="modalQuantity">
+                    <div class="mb-3">
+                        <label for="payment" class="form-label">Payment</label>
+                        <input type="text" class="form-control" id="payment" name="payment" required>
+                    </div>
+                    <p>Quantity: <span id="quantitySpan"></span></p>
+                    <p>Total Price: $<span id="totalPrice"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Confirm Purchase</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

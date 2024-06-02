@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2024 at 08:17 PM
+-- Generation Time: Jun 02, 2024 at 05:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -60,13 +60,6 @@ CREATE TABLE `carts` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `carts`
---
-
-INSERT INTO `carts` (`id`, `userId`, `productId`, `quantity`, `created_at`, `updated_at`) VALUES
-(6, 1, 1, 2, '2024-05-30 10:08:06', '2024-05-30 10:08:06');
-
 -- --------------------------------------------------------
 
 --
@@ -83,9 +76,9 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `categoryName`) VALUES
-(1, 'T-shirt'),
+(1, 'Bag'),
 (2, 'Pants'),
-(3, 'Bag');
+(3, 'T-Shirt');
 
 -- --------------------------------------------------------
 
@@ -158,12 +151,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '0001_01_01_000000_create_users_table', 1),
 (2, '0001_01_01_000001_create_cache_table', 1),
 (3, '0001_01_01_000002_create_jobs_table', 1),
-(4, '2024_05_21_004240_create_shops_table', 1),
-(5, '2024_05_22_085119_products_table', 1),
-(6, '2024_05_22_141712_multirole_table', 1),
-(7, '2024_05_25_071914_categories_table', 1),
-(8, '2024_05_26_055941_transaction_table', 2),
-(9, '2024_05_30_170655_carts_table', 3);
+(4, '2024_01_01_000002_create_shops_table', 1),
+(5, '2024_01_01_000003_categories_table', 1),
+(6, '2024_01_01_000004_products_table', 1),
+(7, '2024_05_22_141712_multirole_table', 1),
+(8, '2024_05_26_055941_transaction_table', 1),
+(9, '2024_05_30_170655_carts_table', 1);
 
 -- --------------------------------------------------------
 
@@ -176,17 +169,6 @@ CREATE TABLE `multirole` (
   `userId` bigint(20) UNSIGNED NOT NULL,
   `roleName` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `multirole`
---
-
-INSERT INTO `multirole` (`id`, `userId`, `roleName`) VALUES
-(1, 1, '1'),
-(2, 1, '2'),
-(3, 2, '1'),
-(4, 2, '2'),
-(5, 3, '1');
 
 -- --------------------------------------------------------
 
@@ -218,17 +200,6 @@ CREATE TABLE `products` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`id`, `shopId`, `name`, `categoryId`, `price`, `quantity`, `description`, `image`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Sanina', 1, 1000.00, 2, 'asdasdasd', '1716625225.jpg', '2024-05-25 00:20:25', '2024-05-25 23:39:39'),
-(7, 2, 'Karsones sa mga choi', 2, 1000.00, 2, 'Karsones sa mga choi', '1716649989.png', '2024-05-25 04:41:09', '2024-05-26 00:11:31'),
-(8, 2, 'Sanina sa mga gwapo', 1, 500.00, 10, 'Sanina ni siya sa mga gwapo', '1716649801.png', '2024-05-25 06:29:01', '2024-05-25 07:18:20'),
-(9, 2, 'Bag nimo', 3, 10000.00, 8, 'Bag sa mga kwartaan', '1716656442.jpg', '2024-05-25 09:00:42', '2024-05-30 09:58:06'),
-(10, 1, 'Bag nako', 3, 500.00, 10, 'Bag nako lage', '1717092870.jpg', '2024-05-30 10:14:30', '2024-05-30 10:14:30');
 
 -- --------------------------------------------------------
 
@@ -264,14 +235,6 @@ CREATE TABLE `shops` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `shops`
---
-
-INSERT INTO `shops` (`id`, `userId`, `shopName`, `email`, `mobileNumber`, `shopDesc`, `shopImage`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Hay nako', 'test@gmail.com', '090606080427', 'asdasdlajshdkajsbdkjasbdkjasdas', '1716624097.jpg', 1, '2024-05-25 00:01:37', '2024-05-25 00:01:37'),
-(2, 2, 'Alan', 'dosadoa45@gmail.com', '09060680427', 'Baragy Gwapo', '1716635416.jpg', 1, '2024-05-25 03:10:16', '2024-05-25 03:10:16');
-
 -- --------------------------------------------------------
 
 --
@@ -304,15 +267,6 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `lastname`, `firstname`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'test', 'test', 'test@gmail.com', '$2y$12$enko7vOBfw./8psoBw2e0.LdHgss4.cZ9/gwFw.xW2fKGjGSpHOVi', NULL, '2024-05-25 00:01:14', '2024-05-25 00:01:14'),
-(2, 'Dosado', 'Alangabriel', 'dosadoa45@gmail.com', '$2y$12$4FIZ8Sz9OcsTOg72dWCuYe/pIT/oaUhRjA79chbzMqZe98WdxSMiG', NULL, '2024-05-25 03:09:24', '2024-05-25 03:09:24'),
-(3, 'emem', 'emem', 'emem@gmail.com', '$2y$12$OYXvKfjtXEfdy33fCsrE6ODDsd7D3vxZo0Ix8Aj7e.WnHLQNHhgJW', NULL, '2024-05-25 03:25:06', '2024-05-25 03:25:06');
 
 --
 -- Indexes for dumped tables
@@ -388,6 +342,7 @@ ALTER TABLE `password_reset_tokens`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
+  ADD KEY `products_categoryid_foreign` (`categoryId`),
   ADD KEY `products_shopid_foreign` (`shopId`);
 
 --
@@ -428,7 +383,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -458,31 +413,31 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `multirole`
 --
 ALTER TABLE `multirole`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `shops`
 --
 ALTER TABLE `shops`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -505,6 +460,7 @@ ALTER TABLE `multirole`
 -- Constraints for table `products`
 --
 ALTER TABLE `products`
+  ADD CONSTRAINT `products_categoryid_foreign` FOREIGN KEY (`categoryId`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `products_shopid_foreign` FOREIGN KEY (`shopId`) REFERENCES `shops` (`id`) ON DELETE CASCADE;
 
 --
